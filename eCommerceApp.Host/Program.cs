@@ -10,14 +10,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
-builder.Services.AddDbContextPool<AppDbContext>(builder =>
-{
-   // var connectionString =builder..GetConnectionString("Database");
-    builder.UseSqlServer(("Server=DESKTOP-LCDV0UT\\SQLEXPRESS;Database=eCommerceAppDb;Trusted_Connection=true;Encrypt=false;"));
-});
-//builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
-//builder.Services.AddInfrastructureService(builder.Configuration);
-//builder.Services.AddApplicationService();
+//builder.Services.AddDbContextPool<AppDbContext>(builder =>
+//{
+//   // var connectionString =builder..GetConnectionString("Database");
+//    builder.UseSqlServer(("Server=DESKTOP-LCDV0UT\\SQLEXPRESS;Database=eCommerceAppDb;Trusted_Connection=true;Encrypt=false;"));
+//});
+builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+builder.Services.AddInfrastructureService(builder.Configuration);
+builder.Services.AddApplicationService();
 
 var app = builder.Build();
 
